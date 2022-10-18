@@ -1,3 +1,4 @@
+// - Librerias de Unity
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,26 +7,39 @@ using UnityEngine.SceneManagement;
 
 public class bulletControl : MonoBehaviour
 {
+    // - Clases y variables
     public float speed = 10;
     Rigidbody2D rb;
 
-    // Start is called before the first frame update
+
+
+
+    // !!Se ejecuta una vez
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.up * speed);
     }
 
-    // Update is called once per frame
+
+
+
+    // !!Se ejecuta por cada frame
     void Update()
     {
 
     }
 
-    // Trigger para detectar colisiones y destruir el objecto
+
+
+
+    // - Trigger para detectar colisiones y destruir el objecto
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.gameObject.name);
+
+
+        // - Con el tag indica que objecto destruir cuando se ejecuta el trigger indicado
         if(collision.tag == "Asteroid")
         {
             collision.gameObject.GetComponent<asteroidControl>().Death();

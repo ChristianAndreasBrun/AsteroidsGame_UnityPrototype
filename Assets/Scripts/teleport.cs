@@ -1,3 +1,4 @@
+// - Librerias de Unity
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,17 +7,23 @@ using UnityEngine.SceneManagement;
 
 public class teleport : MonoBehaviour
 {
+    // Funciones
     public float limitX = 10;
     public float limitY = 6;
 
 
-    // Start is called before the first frame update
+
+
+    // !!Se ejecuta una vez
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
+
+
+    // !!Se ejecuta por cada frame
     void Update()
     {
         if (transform.position.y > limitY)

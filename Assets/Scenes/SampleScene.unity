@@ -358,9 +358,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.3
-  m_AngularDrag: 0.05
+  m_Mass: 0.5
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -547,6 +547,7 @@ MonoBehaviour:
   time: 0
   limiteX: 10
   limiteY: 6
+  enemyLimit: 1
 --- !u!4 &1505462828
 Transform:
   m_ObjectHideFlags: 0
@@ -593,9 +594,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroids_min: 2
   asteroids_max: 8
+  asteroid: {fileID: 8779544958370761660, guid: df8a2f5318f590f4493a1caabdec754f, type: 3}
   limiteY: 6
   limiteX: 10
-  asteroid: {fileID: 8779544958370761660, guid: df8a2f5318f590f4493a1caabdec754f, type: 3}
 --- !u!4 &1851474547
 Transform:
   m_ObjectHideFlags: 0
