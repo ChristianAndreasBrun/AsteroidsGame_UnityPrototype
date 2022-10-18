@@ -1,42 +1,42 @@
+// - Librerias de Unity
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class enemyManager : MonoBehaviour
 {
     public GameObject spawnShip;
-    public float spawnTime = 60000;
+    public float spawnTime = 3f;
     public float time = 0;
     public float limiteX = 10;
     public float limiteY = 6;
-    public float enemyLimit = 1;
     Rigidbody2D rb;
 
-    // Start is called before the first frame update
+
+
+    // !!Se ejecuta una vez
     void Start()
     {
         
     }
 
 
-    // Update is called once per frame
+
+    // !!Se ejecuta por cada frame
     void Update()
     {
-        time += Time.deltaTime;
+            // - Temporizador
+        //time += Time.deltaTime;
 
-        //int enemyShip
-
-
-
-
-
-       /* if(time >= spawnTime)
+        if(time >= spawnTime)
         {
             Vector2 position = new Vector2(Random.Range (-limiteX, limiteX), Random.Range(-limiteY, limiteY));
             Vector3 rotation = new Vector3(0, 0, 0);
-            GameObject temp = Instantiate(spawnShip, position, Quaternion.Euler(rotation));
-            //temp.GetComponent<enemyControl>().manager = this;
-        }*/
+            //GameObject temp = Instantiate(spawnShip, position, Quaternion.Euler(rotation));
+            spawnTime = 0;
+        }
     }
 }

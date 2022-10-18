@@ -13,13 +13,11 @@ public class teleport : MonoBehaviour
 
 
 
-
     // !!Se ejecuta una vez
     void Start()
     {
         
     }
-
 
 
 

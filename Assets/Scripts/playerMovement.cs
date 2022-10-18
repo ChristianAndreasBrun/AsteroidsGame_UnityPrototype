@@ -17,7 +17,6 @@ public class playerMovement : MonoBehaviour
 
 
 
-
     // !!Se ejecuta una vez
     private void Start()
     {
@@ -27,48 +26,56 @@ public class playerMovement : MonoBehaviour
 
 
 
-
     // !!Se ejecuta por cada frame
     void Update()
     {
-        // - Navegacion en vertical
+            // - Navegacion en vertical
         float vertical = Input.GetAxis("Vertical");
         if (vertical > 0)
         {
             Vector3 movement = new Vector3(0, vertical);
             rb.AddForce(transform.up * vertical * speed * Time.deltaTime);
 
-            // - Ejecuta el impulso (ture)
+                // - Ejecuta el impulso (ture)
             anim.SetBool("Impulse", true);
         }
         else
         {
-            // - No ejecuta el impulso (false)
+                // - No ejecuta el impulso (false)
             anim.SetBool("Impulse", false);
         }
 
-        // - Navegacion rotando en horizontal
+            // - Navegacion rotando en horizontal
         float horizontal = Input.GetAxis("Horizontal");
         transform.eulerAngles += new Vector3(0, 0, horizontal * rotationSpeed * Time.deltaTime);
 
 
-        // - Deeclarar boton de accion para disparar el laser
+            // - Deeclarar boton de accion para disparar el laser
         if (Input.GetButtonDown("Jump"))
         {
 
-            // - Tiempo de muerte de la bala
+                // - Tiempo de muerte de la bala
             GameObject temp = Instantiate (bullet, cannon.transform.position, transform.rotation);
             Destroy (temp, 1.5f);
         }
-
     }
-
 
 
 
     // - Fuccion de muerte
     public void Death()
     {
-        //Destroy(gameObject);
+            // - Resta vidas al jugador
+        gameManager.instance.lives -= 1;
+            // - Transforma el objecto la posicion 0
+        transform.position = new Vector3(0, 0, 0);
+        rb.velocity = new Vector2 (0, 0);
+            // - Destruye la nave cuando el contador de vidas llega al 0
+        if (gameManager.instance.lives < 0)
+        {
+                // - Destruye el objecto
+            Destroy(gameObject);
+            Time.timeScale = 0;
+        }
     }
 }

@@ -15,21 +15,21 @@ public class asteroidControl : MonoBehaviour
 
 
 
-
     // !!Se ejecuta una vez
     void Start()
     {
+            // - Agrega el componente Rigidbody
         rb = GetComponent<Rigidbody2D>();
-        // - Toma una drecion aleatoria en X e Y
+            // - Toma una drecion aleatoria en X e Y
         Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        // - Velocidad aleatoria dentro del rango establecido
+            // - Velocidad aleatoria dentro del rango establecido
         direction = direction * Random.Range(speed_min, speed_max);
         //Debug.Log(direction);
 
-        // - Añade fuerza al objecto
+            // - Añade fuerza de movimiento al objecto
         rb.AddForce(direction);
+        manager.asteroids += 1;
     }
-
 
 
 
@@ -41,25 +41,26 @@ public class asteroidControl : MonoBehaviour
 
 
 
-
     // - Funccion para dividir un objecto en 2 de menor escala, cuando es destruido
     public void Death()
     {
-        // - Instacia un objecto a menor escala cuando se destruye el primero
+            // - Instacia un objecto a menor escala cuando se destruye el primero
         GameObject temp1 = Instantiate(manager.asteroid, transform.position, transform.rotation);
-        // - Instancia otro asteroide
+            // - Instancia otro asteroide
         temp1.GetComponent<asteroidControl>().manager = manager;
-        // - Escala el objecto, a la mitad del tamaño original
+            // - Escala el objecto, a la mitad del tamaño original
         temp1.transform.localScale = transform.localScale * 0.5f;
 
         GameObject temp2 = Instantiate(manager.asteroid, transform.position, transform.rotation);
         temp2.GetComponent<asteroidControl>().manager = manager;
         temp2.transform.localScale = transform.localScale * 0.5f;
 
-        // - Destruye el primer objecto antes de dividir
+            // - Suma puntos en la tabla de Score
+        gameManager.instance.score += 100;
+        manager.asteroids -= 1;
+            // - Destruye el primer objecto antes de dividir
         Destroy(gameObject);
     }
-
 
 
 
@@ -69,9 +70,9 @@ public class asteroidControl : MonoBehaviour
         //Debug.Log(collision.gameObject.name);
         if (collision.tag == "Player")
         {
-            // - Cuando colisiona, se destruye
+                // - Cuando colisiona, se destruye
             collision.gameObject.GetComponent<playerMovement>().Death();
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }
