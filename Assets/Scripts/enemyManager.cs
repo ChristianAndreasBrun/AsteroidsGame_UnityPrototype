@@ -22,7 +22,7 @@ public class enemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time = Time.deltaTime;
+        time += Time.deltaTime;
 
         if(time >= spawnTime)
         {
