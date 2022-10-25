@@ -8,6 +8,7 @@ public class bulletControl : MonoBehaviour
     // - Clases y variables
     public float speed = 10;
     Rigidbody2D rb;
+    public float maxLifetime = 5.0f;
 
 
 
@@ -16,6 +17,12 @@ public class bulletControl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.up * speed);
+    }
+
+    public void Project(Vector2 direction)
+    {
+        rb.AddForce(direction * this.speed);
+        Destroy(this.gameObject, this.maxLifetime);
     }
 
 
@@ -33,7 +40,7 @@ public class bulletControl : MonoBehaviour
 
         if (collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<enemyControl>().Death();
+            collision.gameObject.GetComponent<enemyShip>().Death();
             Destroy(gameObject);
         }
     }

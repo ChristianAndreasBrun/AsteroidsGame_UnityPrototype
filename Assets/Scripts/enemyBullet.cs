@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyBullet : MonoBehaviour
+public class bulletEnemy : MonoBehaviour
 {
     // - Clases y variables
     public float speed = 10;

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class playerShip : MonoBehaviour
 {
     // - Clases y variables
     Rigidbody2D rb;
@@ -15,6 +15,7 @@ public class playerMovement : MonoBehaviour
     public GameObject bullet;
     public GameObject cannon;
     public GameObject DeathParticles;
+    public AudioClip thrustSound;
 
 
 
@@ -37,6 +38,7 @@ public class playerMovement : MonoBehaviour
         {
             Vector3 movement = new Vector3(0, vertical);
             rb.AddForce(transform.up * vertical * speed * Time.deltaTime);
+            audioManager.Instance.PlaySound(thrustSound);
             anim.SetBool("Impulse", true);
         }
         else

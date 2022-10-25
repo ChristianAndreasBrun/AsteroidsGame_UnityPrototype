@@ -6,7 +6,7 @@ using UnityEngine;
 public class enemySpawner : MonoBehaviour
 {
     public GameObject spawnShip;
-    public float spawnTime = 3f;
+    public float spawnTime = 60.0f;
     public float time = 0;
     public float limiteX = 10;
     public float limiteY = 6;

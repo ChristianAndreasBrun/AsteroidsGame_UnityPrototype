@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class asteroidControl : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class asteroidControl : MonoBehaviour
     public float speed_max;
     Rigidbody2D rb;
     public asteroidManager manager;
+    public AudioClip asteroidSound;
 
 
 
@@ -44,6 +46,7 @@ public class asteroidControl : MonoBehaviour
 
         }
         manager.asteroids -= 1;
+        audioManager.Instance.PlaySound(asteroidSound);
         Destroy(gameObject);
     }
 
@@ -51,7 +54,7 @@ public class asteroidControl : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.gameObject.GetComponent<playerMovement>().Death();
+            collision.gameObject.GetComponent<playerShip>().Death();
         }
     }
 }

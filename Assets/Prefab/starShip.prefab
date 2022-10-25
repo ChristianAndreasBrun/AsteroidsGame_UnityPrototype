@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1840631205933747301}
   - component: {fileID: 1170392711664801623}
   - component: {fileID: 6544122452913522320}
+  - component: {fileID: -7117654124570208664}
   - component: {fileID: -5220487477423521968}
   - component: {fileID: 2474005410915288027}
   - component: {fileID: 6605027630082066704}
-  - component: {fileID: -2188551878973715912}
   m_Layer: 0
   m_Name: starShip
   m_TagString: Enemy
@@ -106,6 +106,19 @@ MonoBehaviour:
   manager: {fileID: 0}
   bullet: {fileID: 0}
   cannon: {fileID: 0}
+--- !u!114 &-7117654124570208664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822622684030190732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: debe13a4cdb2a7f4caed655ae33388f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!114 &-5220487477423521968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,17 +170,3 @@ CircleCollider2D:
   m_Offset: {x: -0.02, y: 0.03}
   serializedVersion: 2
   m_Radius: 0.47
---- !u!114 &-2188551878973715912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2822622684030190732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06e2a14665c1722418c76f18846cf493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  limitX: 10
-  limitY: 6

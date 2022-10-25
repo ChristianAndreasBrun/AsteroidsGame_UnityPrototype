@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyControl : MonoBehaviour
+public class enemyShip : MonoBehaviour
 {
     // - Clases y variables
     public float speed_min;
@@ -38,7 +38,7 @@ public class enemyControl : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.gameObject.GetComponent<playerMovement>().Death();
+            collision.gameObject.GetComponent<playerShip>().Death();
         }
     }
 }
