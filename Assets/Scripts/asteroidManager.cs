@@ -2,14 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class asteroidManager : MonoBehaviour
 {
     // - Clases y variables
-    public int asteroids_min = 1;
-    public int asteroids_max = 1;
+    public int asteroids_min = 2;
+    public int asteroids_max = 8;
     public int asteroids;
     public float limiteX = 10;
     public float limiteY = 6;
@@ -41,22 +39,21 @@ public class asteroidManager : MonoBehaviour
 
     void createAsteroids()
     {
-
-        // - Funccion para crear un numero objectos de forma aleatoria, dentro del rango establecido
         int asteroids = Random.Range(asteroids_min, asteroids_max);
 
-        // - Funccion FOR para instanciar objectos
         for (int i = 0; i < asteroids; i++)
         {
-            Debug.Log("Instanciado asteroid: " + i);
-                // - Instancia en posiciones aleatorias dentro de los limites de la pantalla, en horizontal y vertical (X e Y)
-            Vector2 position = new Vector2(Random.Range(-limiteX, limiteX), Random.Range(-limiteY, limiteY));
-                // - Rota los objectos de forma aleatoria cuando se instancia
-            Vector3 rotation = new Vector3(0, 0, Random.Range(0f, 360f));
-                // - Guarda el objecto de forma temporal y aplica rotacion
-            GameObject temp = Instantiate(asteroid, position, Quaternion.Euler(rotation));
-                // - Accede al script de "asteroidControl" = "public asteroidManager manager"
-            temp.GetComponent<asteroidControl>().manager = this;    // - "this" seleciona el componente actual
+
+            Vector3 posicion = new Vector3(Random.Range(-limiteX, limiteX), Random.Range(-limiteY, limiteY));
+
+            while (Vector3.Distance(posicion, new Vector3(0, 0, 0)) < 2)
+            {
+                posicion = new Vector3(Random.Range(-limiteX, limiteX), Random.Range(-limiteY, limiteY));
+            }
+
+            Vector3 rotacion = new Vector3(0, 0, Random.Range(0f, 360f));
+            GameObject temp = Instantiate(asteroid, posicion, Quaternion.Euler(rotacion));
+            temp.GetComponent<asteroidControl>().manager = this;
         }
     }
 }

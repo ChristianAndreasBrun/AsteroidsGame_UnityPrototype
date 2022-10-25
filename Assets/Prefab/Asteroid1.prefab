@@ -103,6 +103,8 @@ MonoBehaviour:
   speed_min: 100
   speed_max: 200
   manager: {fileID: 0}
+  maxAsteroid: 2
+  tmp: 0
 --- !u!114 &-3273027303582683711
 MonoBehaviour:
   m_ObjectHideFlags: 0

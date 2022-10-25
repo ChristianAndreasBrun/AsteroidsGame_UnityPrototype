@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UImanager : MonoBehaviour
@@ -12,10 +11,12 @@ public class UImanager : MonoBehaviour
     public TextMeshProUGUI time;
     public TextMeshProUGUI score;
     public TextMeshProUGUI lives;
+    public GameObject GameOver;
+
     //public int timee;
     public int scores;
     public int livees;
-
+    
 
 
     // !!Se ejecuta una vez
@@ -34,10 +35,16 @@ public class UImanager : MonoBehaviour
 
             // - Contador de la punctuacion
         scores = gameManager.instance.score;
-        score.text = score.ToString();
+        score.text = scores.ToString();
 
             // - Contador de vidas
         livees = gameManager.instance.lives;
-        lives.text = lives.ToString();
+        lives.text = livees.ToString();
+
+            // - Aparecer el mensje de "Game Over" al morir
+        if (gameManager.instance.lives <= 0)
+        {
+            GameOver.SetActive(true);
+        }
     }
 }

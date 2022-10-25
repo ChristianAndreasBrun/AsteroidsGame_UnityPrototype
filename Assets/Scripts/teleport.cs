@@ -2,22 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class teleport : MonoBehaviour
 {
     // Funciones
     public float limitX = 10;
     public float limitY = 6;
-
-
-
-    // !!Se ejecuta una vez
-    void Start()
-    {
-        
-    }
 
 
 

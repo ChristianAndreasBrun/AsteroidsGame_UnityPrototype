@@ -1,9 +1,8 @@
-// - Librerias de Unity
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletControl : MonoBehaviour
+public class bulletEnemy : MonoBehaviour
 {
     // - Clases y variables
     public float speed = 10;
@@ -18,19 +17,13 @@ public class bulletControl : MonoBehaviour
         rb.AddForce(transform.up * speed);
     }
 
-
-
-        // - Trigger para detectar colisiones y destruir el objecto
-    private void OnTriggerEnter2D(Collider2D collision)
+    // Update is called once per frame
+    void Update()
     {
-        //Debug.Log(collision.gameObject.name);
+    }
 
-        if (collision.tag == "Asteroid")
-        {
-            collision.gameObject.GetComponent<asteroidControl>().Death();
-            Destroy(gameObject);
-        }
-
+    private void OnTriggerEnter2D(Collider2D collision) 
+    {
         if (collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<enemyControl>().Death();

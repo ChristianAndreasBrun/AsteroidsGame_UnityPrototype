@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class enemyControl : MonoBehaviour
 {
@@ -11,29 +9,21 @@ public class enemyControl : MonoBehaviour
     public float speed_min;
     public float speed_max;
     Rigidbody2D rb;
-    public enemyManager manager;
+    public enemySpawner manager;
+    CircleCollider2D colision;
+    public GameObject bullet;
+    public GameObject cannon;
 
 
 
     // !!Se ejecuta una vez
     void Start()
     {
-            // - Agrega el componente Rigidbody
         rb = GetComponent<Rigidbody2D>();
-            // - Toma una drecion aleatoria en X
+        colision = GetComponent<CircleCollider2D>();
         Vector2 direction = new Vector2(Random.Range(-1f, 1f), 0);
-            // - Velocidad aleatoria dentro del rango establecido
         direction = direction * Random.Range(speed_min, speed_max);
-            // - Añade fuerza de movimiento al objecto
         rb.AddForce(direction);
-    }
-
-
-
-    // !!Se ejecuta por cada frame
-    void Update()
-    {
-        
     }
 
 
@@ -42,5 +32,13 @@ public class enemyControl : MonoBehaviour
     public void Death()
     {
        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.gameObject.GetComponent<playerMovement>().Death();
+        }
     }
 }

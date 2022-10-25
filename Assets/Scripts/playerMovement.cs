@@ -2,18 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
     // - Clases y variables
     Rigidbody2D rb;
     Animator anim;
+    EdgeCollider2D colision;
+    SpriteRenderer sprite;
     public float speed = 10;
     public float rotationSpeed = 10;
     public GameObject bullet;
     public GameObject cannon;
+    public GameObject DeathParticles;
 
 
 
@@ -22,6 +23,8 @@ public class playerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        colision = GetComponent<EdgeCollider2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
 
@@ -29,32 +32,23 @@ public class playerMovement : MonoBehaviour
     // !!Se ejecuta por cada frame
     void Update()
     {
-            // - Navegacion en vertical
         float vertical = Input.GetAxis("Vertical");
         if (vertical > 0)
         {
             Vector3 movement = new Vector3(0, vertical);
             rb.AddForce(transform.up * vertical * speed * Time.deltaTime);
-
-                // - Ejecuta el impulso (ture)
             anim.SetBool("Impulse", true);
         }
         else
         {
-                // - No ejecuta el impulso (false)
             anim.SetBool("Impulse", false);
         }
 
-            // - Navegacion rotando en horizontal
         float horizontal = Input.GetAxis("Horizontal");
         transform.eulerAngles += new Vector3(0, 0, horizontal * rotationSpeed * Time.deltaTime);
 
-
-            // - Deeclarar boton de accion para disparar el laser
         if (Input.GetButtonDown("Jump"))
         {
-
-                // - Tiempo de muerte de la bala
             GameObject temp = Instantiate (bullet, cannon.transform.position, transform.rotation);
             Destroy (temp, 1.5f);
         }
@@ -65,17 +59,43 @@ public class playerMovement : MonoBehaviour
     // - Fuccion de muerte
     public void Death()
     {
-            // - Resta vidas al jugador
-        gameManager.instance.lives -= 1;
-            // - Transforma el objecto la posicion 0
-        transform.position = new Vector3(0, 0, 0);
-        rb.velocity = new Vector2 (0, 0);
-            // - Destruye la nave cuando el contador de vidas llega al 0
-        if (gameManager.instance.lives < 0)
+        GameObject temp = Instantiate(DeathParticles, transform.position, transform.rotation);
+        Destroy(temp, 2.5f);
+
+        if (gameManager.instance.lives <= 0)
         {
-                // - Destruye el objecto
             Destroy(gameObject);
             Time.timeScale = 0;
         }
+        else
+        {
+        StartCoroutine(Respawn_Coroutine());
+        }
+    }
+
+
+
+    IEnumerator Respawn_Coroutine()
+    {
+        colision.enabled = false;
+        sprite.enabled = false;
+        yield return new WaitForSeconds(2);
+
+        gameManager.instance.lives -= 1;
+        rb.velocity = new Vector2 (0, 0);
+        transform.position = new Vector3(0, 0, 0);
+
+            // - Animacion de imortalidad al respawnear
+        sprite.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        sprite.enabled = false;
+        yield return new WaitForSeconds(0.2f);
+        sprite.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        sprite.enabled = false;
+        yield return new WaitForSeconds(0.2f);
+        sprite.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        colision.enabled = true;
     }
 }
