@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+// - Librerias de Unity
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -8,6 +7,7 @@ public class audioManager : MonoBehaviour
 {
     public static audioManager Instance { get; private set; }
     private AudioSource audioSource;
+
 
 
     private void Awake()

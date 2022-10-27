@@ -1,6 +1,5 @@
 // - Librerias de Unity
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class playerShip : MonoBehaviour
@@ -15,7 +14,7 @@ public class playerShip : MonoBehaviour
     public GameObject bullet;
     public GameObject cannon;
     public GameObject DeathParticles;
-    public AudioClip thrustSound;
+    AudioSource audioSource;
 
 
 
@@ -26,6 +25,7 @@ public class playerShip : MonoBehaviour
         anim = GetComponent<Animator>();
         colision = GetComponent<EdgeCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -38,13 +38,16 @@ public class playerShip : MonoBehaviour
         {
             Vector3 movement = new Vector3(0, vertical);
             rb.AddForce(transform.up * vertical * speed * Time.deltaTime);
-            audioManager.Instance.PlaySound(thrustSound);
             anim.SetBool("Impulse", true);
+            audioSource.Play();
         }
         else
         {
             anim.SetBool("Impulse", false);
+            audioSource.Stop();
         }
+        Debug.Log(audioSource.time);
+
 
         float horizontal = Input.GetAxis("Horizontal");
         transform.eulerAngles += new Vector3(0, 0, horizontal * rotationSpeed * Time.deltaTime);

@@ -1,18 +1,16 @@
 // - Librerias de Unity
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class enemyShip : MonoBehaviour
 {
     // - Clases y variables
-    public float speed_min;
-    public float speed_max;
-    Rigidbody2D rb;
-    public enemySpawner manager;
-    CircleCollider2D colision;
+    public float minSpeed;
+    public float maxSpeed;
     public GameObject bullet;
-    public GameObject cannon;
+    public Transform laserPos;
+    private float timer;
+    CircleCollider2D colision;
+    Rigidbody2D rb;
 
 
 
@@ -21,14 +19,32 @@ public class enemyShip : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         colision = GetComponent<CircleCollider2D>();
+
         Vector2 direction = new Vector2(Random.Range(-1f, 1f), 0);
-        direction = direction * Random.Range(speed_min, speed_max);
+        direction = direction * Random.Range(minSpeed, maxSpeed);
         rb.AddForce(direction);
     }
 
 
+    private void Update()
+    {
+        timer += Time.deltaTime;
 
-    // Funccion para destruir un objecto
+        if (timer > 0.5f)
+        {
+            timer = 0;
+            shoot();
+        }
+    }
+
+
+    void shoot()
+    {
+        Instantiate(bullet, laserPos.position, Quaternion.identity);
+    }
+
+
+    // - Funccion para destruir un objecto
     public void Death()
     {
        Destroy(gameObject);

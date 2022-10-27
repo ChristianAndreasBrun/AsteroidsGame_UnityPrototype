@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+// - Librerias de Unity
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class asteroidControl : MonoBehaviour
 {
@@ -49,6 +47,7 @@ public class asteroidControl : MonoBehaviour
         audioManager.Instance.PlaySound(asteroidSound);
         Destroy(gameObject);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
