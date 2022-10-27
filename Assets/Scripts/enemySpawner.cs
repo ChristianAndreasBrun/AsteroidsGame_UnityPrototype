@@ -5,7 +5,7 @@ public class enemySpawner : MonoBehaviour
 {
     public GameObject EnemyShip;
     public float spawnTime = 60.0f;
-    public float time;
+    private float time;
     public float limiteX = 10;
     public float limiteY = 6;
     Rigidbody2D rb;
@@ -16,7 +16,8 @@ public class enemySpawner : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if(time >= spawnTime)
+
+        if(time >= spawnTime & gameManager.instance.score >= 1000)
         {
             Vector3 position = new Vector3(Random.Range (-limiteX, limiteX), Random.Range(-limiteY, limiteY));
             Vector3 rotation = new Vector3(0, 0, 0);

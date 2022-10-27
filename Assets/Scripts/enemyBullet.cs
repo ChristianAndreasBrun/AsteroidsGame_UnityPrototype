@@ -1,13 +1,12 @@
 // - Librerias de Unity
 using UnityEngine;
 
-public class bulletEnemy : MonoBehaviour
+public class enemyBullet : MonoBehaviour
 {
     // - Clases y variables
-    private GameObject enemy;
-    public float speed = 10;
-    public float lifeTime = 0.5f;
-    public float moveTime = 3f;
+    public float speed = 300;
+   // public float lifeTime = 0.5f;
+    //public float moveTime = 3f;
     Rigidbody2D rb;
 
 
@@ -15,16 +14,9 @@ public class bulletEnemy : MonoBehaviour
     // !!Se ejecuta una vez
     void Start()
     {
-        //rb = GetComponent<Rigidbody2D>();
-        enemy = GameObject.FindGameObjectWithTag("Player");
-
-        if (enemy.transform.localScale.x > 0)
-        {
-            speed = -speed;
-        }
-
-        //rb.AddForce(transform.position * speed);
-        Destroy(gameObject, moveTime);
+        rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(-transform.up * speed);
+        //Destroy(gameObject, moveTime);
     }
 
 
@@ -32,7 +24,7 @@ public class bulletEnemy : MonoBehaviour
     // !!Se ejecuta por cada frame
     void Update()
     {
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+        //transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
 
 
@@ -41,13 +33,13 @@ public class bulletEnemy : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.gameObject.GetComponent<enemyShip>().Death();
+            collision.gameObject.GetComponent<playerShip>().Death();
             Destroy(gameObject);
         }
     }
 
-    void AutoDestroy()
+   /* void AutoDestroy()
     {
         Destroy(gameObject, lifeTime);
-    }
+    }*/
 }

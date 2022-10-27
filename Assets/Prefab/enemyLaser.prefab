@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2334502607844675394}
   - component: {fileID: 2327611353854840929}
   - component: {fileID: 9094002039634753352}
-  - component: {fileID: 8312387154749246849}
+  - component: {fileID: 2158106441217276505}
   m_Layer: 0
   m_Name: enemyLaser
   m_TagString: Untagged
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   limitX: 10
   limitY: 6
---- !u!114 &8312387154749246849
+--- !u!114 &2158106441217276505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: debe13a4cdb2a7f4caed655ae33388f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 300

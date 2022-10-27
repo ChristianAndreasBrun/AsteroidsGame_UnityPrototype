@@ -44,7 +44,8 @@ public class UImanager : MonoBehaviour
             // - Aparecer el mensje de "Game Over" al morir
         if (gameManager.instance.lives <= 0)
         {
-            GameOver.SetActive(true);
+            GameOver.SetActive(true); 
+            Time.timeScale = 0;
         }
     }
 }

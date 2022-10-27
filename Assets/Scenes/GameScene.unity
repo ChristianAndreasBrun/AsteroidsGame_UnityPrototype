@@ -405,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   score: 0
-  lives: 30
+  lives: 3
 --- !u!4 &686593827
 Transform:
   m_ObjectHideFlags: 0
@@ -529,6 +529,7 @@ MonoBehaviour:
   bullet: {fileID: 6402646196281432211, guid: 8bd4669132ed7614cb0dc7be6c98eb96, type: 3}
   cannon: {fileID: 297796224}
   DeathParticles: {fileID: 3680862814368543764, guid: 5bb39893871396e47928eec72d9cd283, type: 3}
+  asteroidSound: {fileID: 8300000, guid: f822bb88233b0e34eaf28920d92809e4, type: 3}
 --- !u!50 &993928195
 Rigidbody2D:
   serializedVersion: 4
@@ -616,7 +617,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993928190}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fc11486631464b340b0b5d7c96a7e518, type: 3}
@@ -1146,8 +1147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyShip: {fileID: 1876236933743813888, guid: 952936438d28ad445a0949d337225c22, type: 3}
-  spawnTime: 3
-  time: 0
+  spawnTime: 60
   limiteX: 10
   limiteY: 6
 --- !u!4 &1505462828

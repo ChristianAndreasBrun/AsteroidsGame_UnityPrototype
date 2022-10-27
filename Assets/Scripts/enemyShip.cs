@@ -7,7 +7,7 @@ public class enemyShip : MonoBehaviour
     public float minSpeed;
     public float maxSpeed;
     public GameObject bullet;
-    public Transform laserPos;
+    public GameObject laserPos;
     private float timer;
     CircleCollider2D colision;
     Rigidbody2D rb;
@@ -26,22 +26,27 @@ public class enemyShip : MonoBehaviour
     }
 
 
-    private void Update()
+    void Update()
     {
         timer += Time.deltaTime;
 
         if (timer > 0.5f)
         {
+            /*timer = 0;
+            shoot();*/
+
+            Vector3 rotacion = new Vector3(0, 0, Random.Range(0f, 360f));
+            GameObject temp = Instantiate(bullet, laserPos.transform.position, Quaternion.Euler(rotacion));
+            Destroy(temp, 5.0f);
             timer = 0;
-            shoot();
         }
     }
 
 
-    void shoot()
+   /* void shoot()
     {
         Instantiate(bullet, laserPos.position, Quaternion.identity);
-    }
+    }*/
 
 
     // - Funccion para destruir un objecto

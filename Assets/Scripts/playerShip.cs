@@ -14,6 +14,7 @@ public class playerShip : MonoBehaviour
     public GameObject bullet;
     public GameObject cannon;
     public GameObject DeathParticles;
+    public AudioClip asteroidSound;
     AudioSource audioSource;
 
 
@@ -65,12 +66,13 @@ public class playerShip : MonoBehaviour
     public void Death()
     {
         GameObject temp = Instantiate(DeathParticles, transform.position, transform.rotation);
-        Destroy(temp, 2.5f);
+        audioManager.Instance.PlaySound(asteroidSound);
+        Destroy(temp, 4.5f);
 
         if (gameManager.instance.lives <= 0)
         {
             Destroy(gameObject);
-            Time.timeScale = 0;
+        
         }
         else
         {
