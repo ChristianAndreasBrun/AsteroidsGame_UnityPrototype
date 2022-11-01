@@ -1,13 +1,16 @@
 // - Librerias de Unity
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class enemySpawner : MonoBehaviour
 {
-    public GameObject EnemyShip;
     public float spawnTime = 60.0f;
-    private float time;
     public float limiteX = 10;
     public float limiteY = 6;
+    private float time;
+    public GameObject EnemyShip;
+    
     Rigidbody2D rb;
 
 

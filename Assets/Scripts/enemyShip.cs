@@ -1,4 +1,6 @@
 // - Librerias de Unity
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class enemyShip : MonoBehaviour
@@ -6,9 +8,11 @@ public class enemyShip : MonoBehaviour
     // - Clases y variables
     public float minSpeed;
     public float maxSpeed;
+    private float timer;
     public GameObject bullet;
     public GameObject laserPos;
-    private float timer;
+    public AudioClip asteroidSound;
+
     CircleCollider2D colision;
     Rigidbody2D rb;
 
@@ -32,27 +36,20 @@ public class enemyShip : MonoBehaviour
 
         if (timer > 0.5f)
         {
-            /*timer = 0;
-            shoot();*/
-
             Vector3 rotacion = new Vector3(0, 0, Random.Range(0f, 360f));
             GameObject temp = Instantiate(bullet, laserPos.transform.position, Quaternion.Euler(rotacion));
-            Destroy(temp, 5.0f);
+            Destroy(temp, 0.8f);
             timer = 0;
         }
     }
 
 
-   /* void shoot()
-    {
-        Instantiate(bullet, laserPos.position, Quaternion.identity);
-    }*/
 
-
-    // - Funccion para destruir un objecto
     public void Death()
     {
-       Destroy(gameObject);
+        gameManager.instance.score += 200;
+        audioManager.Instance.PlaySound(asteroidSound);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

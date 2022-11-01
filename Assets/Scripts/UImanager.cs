@@ -13,7 +13,6 @@ public class UImanager : MonoBehaviour
     public TextMeshProUGUI lives;
     public GameObject GameOver;
 
-    //public int timee;
     public int scores;
     public int livees;
     

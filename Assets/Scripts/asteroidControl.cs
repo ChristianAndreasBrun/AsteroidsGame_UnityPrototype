@@ -1,4 +1,6 @@
 // - Librerias de Unity
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class asteroidControl : MonoBehaviour
@@ -6,9 +8,10 @@ public class asteroidControl : MonoBehaviour
     // - Clases y variables
     public float speed_min;
     public float speed_max;
-    Rigidbody2D rb;
     public asteroidManager manager;
     public AudioClip asteroidSound;
+
+    Rigidbody2D rb;
 
 
 

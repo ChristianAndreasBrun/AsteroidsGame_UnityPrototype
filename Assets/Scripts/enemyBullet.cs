@@ -1,12 +1,12 @@
 // - Librerias de Unity
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class enemyBullet : MonoBehaviour
 {
     // - Clases y variables
     public float speed = 300;
-   // public float lifeTime = 0.5f;
-    //public float moveTime = 3f;
     Rigidbody2D rb;
 
 
@@ -16,20 +16,11 @@ public class enemyBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(-transform.up * speed);
-        //Destroy(gameObject, moveTime);
     }
 
 
 
-    // !!Se ejecuta por cada frame
-    void Update()
-    {
-        //transform.Translate(Vector3.right * speed * Time.deltaTime);
-    }
-
-
-
-    private void OnTriggerEnter2D(Collider2D collision) 
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
@@ -37,9 +28,4 @@ public class enemyBullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-   /* void AutoDestroy()
-    {
-        Destroy(gameObject, lifeTime);
-    }*/
 }
